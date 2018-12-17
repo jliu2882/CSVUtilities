@@ -2,6 +2,7 @@ package sample;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -17,9 +18,8 @@ public class CSVUtilities {
 
     //20
     public CSVUtilities(File csv) {
-        Path pathToFile = Paths.get("src/" + csv.toString());
-
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+        ArrayList<String> CSVData = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(csv))) {
             String line = br.readLine();
             while (line != null) {
                 String[] attributes = line.split(",");
@@ -33,6 +33,7 @@ public class CSVUtilities {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+        this.CSVData=CSVData;
     }
 
     public List<String> getColumnHeaders() {
@@ -45,8 +46,6 @@ public class CSVUtilities {
 
     public List<String> getDataString(int column) {
         List<String> columnData = new ArrayList<>();
-        System.out.println(column+numColumns);
-        System.out.println(CSVData.size());
         for(int i = column+numColumns; i< CSVData.size();i+=numColumns){
             columnData.add(CSVData.get(i));
         }

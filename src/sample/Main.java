@@ -39,9 +39,6 @@ public class Main extends Application {
             } else if(rodent.get(i).equals("Staten Island")){
                 s++;
             }
-            else{
-                System.out.println("error");
-            }
 
         }
         stage.setTitle("Bar Chart Sample");
@@ -54,7 +51,7 @@ public class Main extends Application {
         yAxis.setLabel("Amount of Inspections");
 
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName("2003");
+        series1.setName("Orange is the new Rat");
         series1.getData().add(new XYChart.Data(Brooklyn, b));
         series1.getData().add(new XYChart.Data(Queens, q));
         series1.getData().add(new XYChart.Data(Manhattan, m));
